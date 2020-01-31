@@ -1,0 +1,21 @@
+{
+  "name": "spotify-auto-playlist",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "tmp"
+  },
+  "author": "tmp",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "spotify-sdk": "^1.0.0-beta2",
+    "spotify-web-api-node": "^4.0.0"
+  }
+}
