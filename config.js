@@ -1,8 +1,8 @@
 module.exports = {
   playlistId: '4imIe0P4kT3F4gluHKPHQb', // playlist ID to add songs to
 
-  dateMin: '2019-01-01',
-  dateMax: '2019-04-01',
+  dateMin: '2019-04-01',
+  dateMax: '2019-07-01',
 
   // These come from the spotify app developer page
   // Make an app at https://developer.spotify.com/dashboard/applications
@@ -13,9 +13,19 @@ module.exports = {
 
   debugLog: true, // show debug messages
   disablePaginating: false, // only get first page of results of any API call, for testing
-  opWaitDuration: 5000, // ms to wait between each operation to prevent ratelimiting
   authPort: 8081, // port to wait for server response. Must match application endpoint in Spotify App
   authTimeout: 5 * 60 * 1000, // 5 minutes by default - how long to wait for web response at most
+  removeTracksDryRun: false,
+
+  waitDurations: {
+    default: 1000,
+    getPlaylist: 100,
+    getPlaylistTracks: 100,
+    getArtistAlbums: 100,
+    getAlbum: 1000,
+    addTracksToPlaylist: 5000,
+    removeTracksFromPlaylist: 10000
+  },
 
   // List of artist IDs to add
   artists: [
@@ -96,6 +106,10 @@ module.exports = {
     "6F0qHrc56rrBvr8j6nVsKD", // Srezcat (3)
     "4xpqY2rpUTUPranPlfKJkC", // sky_delta (3)
     "474igmNpPSWMBAoSoVG9t0", // DJ Amane (3)
-    "29nY3biBns7dh08cYj5DBT" // Aitsuki Nakuru (3)
+    "29nY3biBns7dh08cYj5DBT", // Aitsuki Nakuru (3)
+    "3bnPd6eVBsKQQovPQ2qK88" // Stringamp
+  ],
+  blacklist: [
+    '7Dt16apHyW0GZiPmiFmang' // SME Project
   ]
 };

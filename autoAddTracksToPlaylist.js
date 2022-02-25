@@ -9,18 +9,10 @@ const {
   playlistId,
   dateMin,
   dateMax,
-  artists: artistsToAdd
+  artists: artistsToAdd, waitDurations
 } = require('./config');
+const { buildTrackList } = require('./lib/common');
 
-async function buildTrackList(api) {
-  let tracks = await handlePagination(api, 'getPlaylistTracks', playlistId);
-  return tracks.map(track => track.track);
-}
-
-async function getTrackIds(api) {
-  const tracks = await buildTrackList(api);
-  return tracks.map((track) => track.id);
-}
 
 function getArtistsFromTracklist(tracklist) {
   let artists = {};
@@ -71,7 +63,7 @@ async function getArtistTracks(api, artistId) {
       debug(`    Track "${ track?.name }" by ${ track?.artists?.map(a => a.name)?.join(', ') }`);
       result.push(track);
     }
-    await wait();
+    await wait(waitDurations.getAlbum);
   }
   return result;
 }
@@ -81,7 +73,6 @@ async function run() {
     const spotifyApi = await auth();
 
     const existingTracks = await buildTrackList(spotifyApi);
-    // const existingTrackIds = await getTrackIds(spotifyApi);
 
     console.log(`${ existingTracks.length } tracks found`);
 
@@ -89,10 +80,12 @@ async function run() {
       const tracks = await getArtistTracks(spotifyApi, artist);
       for (let track of tracks) {
         if (!isEffectiveDuplicate(track, existingTracks)) {
-          debug(`Track "${ track?.name }" by ${ track?.artists?.map(a => a.name)?.join(', ') } new to playlist`);
+          debug(`  ->> Track "${ track?.name }" by ${ track?.artists?.map(a => a.name)?.join(', ') } new to playlist`);
           spotifyApi.addTracksToPlaylist(playlistId, [`spotify:track:${ track.id }`]);
           existingTracks.push(track);
-          await wait();
+          await wait(waitDurations.addTracksToPlaylist);
+        } else {
+          debug(`! ->> Track "${ track?.name }" by ${ track?.artists?.map(a => a.name)?.join(', ') } is duplicate`);
         }
       }
     }
