@@ -108,8 +108,5 @@ module.exports = {
     "474igmNpPSWMBAoSoVG9t0", // DJ Amane (3)
     "29nY3biBns7dh08cYj5DBT", // Aitsuki Nakuru (3)
     "3bnPd6eVBsKQQovPQ2qK88" // Stringamp
-  ],
-  blacklist: [
-    '7Dt16apHyW0GZiPmiFmang' // SME Project
   ]
 };
