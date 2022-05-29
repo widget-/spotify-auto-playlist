@@ -12,8 +12,8 @@ module.exports = {
   // These come from the spotify app developer page
   // Make an app at https://developer.spotify.com/dashboard/applications
   // and put the credentials here.
-  clientId: "4711922b88624a00af8d8ebd93e02922",
-  clientSecret: "1e171267753043f1be31e612236eff6a",
+  clientId: "",
+  clientSecret: "",
   redirectUri: "http://localhost:8081/auth",
 
   debugLog: true, // show debug messages
