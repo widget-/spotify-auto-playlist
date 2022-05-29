@@ -25,11 +25,10 @@ keep up with as someone who can't follow Japanese-language music sites very well
 ## Included scripts
 
 | Name                            | Description                                                                                                                           |
-|---------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | autoAddTracksToPlaylist.js      | Given a list of artists (by Spotify ID), add any releases within a specific date range to another playlist while avoiding duplicates. |
 | removeDuplicatesFromPlaylist.js | Remove suspiciously similar tracks that look like duplicates from a playlist, even if they're on different albums.                    |
-
-(Something like `getArtistIDsFromPlaylist.js` will be added later)
+| getArtistIDsFromPlaylist.js     | Get the most common artists in a playlist and output them in a format that can be pasted into `config.js`.                            |
 
 ## Usage
 

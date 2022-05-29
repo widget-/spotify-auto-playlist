@@ -1,12 +1,4 @@
 const { auth } = require("./lib/auth");
-const {
-  wait,
-  debug,
-  handlePagination,
-  isEffectiveDuplicate,
-  getArtistsFromTracklist,
-  areArtistsSignificantOnAlbum,
-} = require("./lib/util");
 const { playlistId } = require("./config");
 const { buildTrackList } = require("./lib/common");
 
