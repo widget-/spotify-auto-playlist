@@ -1,5 +1,4 @@
 const { auth } = require("./lib/auth");
-const { playlistId } = require("./config");
 const { buildTrackList } = require("./lib/common");
 
 async function run() {
@@ -25,12 +24,20 @@ async function run() {
       }
     }
 
+    console.log(`${Object.keys(artists).length} artists found`);
+
     const sortedArtistCount = Object.entries(artists).sort(
       ([_k1, v1], [_k2, v2]) => v2.count - v1.count
     );
 
     for (const [id, { name, count }] of sortedArtistCount) {
       console.log(`"${id}", // ${name} (${count})`);
+    }
+
+    if (process.stdout.isTTY) {
+      console.log(
+        "\nToo many artists? Try `node getArtistIDsFromPlaylist.js > artistIDs.txt``"
+      );
     }
   } catch (err) {
     console.log("Something went wrong");
@@ -39,4 +46,4 @@ async function run() {
   }
 }
 
-run().then((_) => null);
+run().then((_) => process.exit(0));
